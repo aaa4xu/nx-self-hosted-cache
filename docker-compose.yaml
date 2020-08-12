@@ -2,11 +2,9 @@ version: '3.5'
 
 services:
   nx-cache:
-    image: nx-self-hosted-cache
-    restart: unless-stopped
-    build: .
+    image: aaa4xu/nx-self-hosted-cache
     environment:
-      MINIO_ADDRESS: http://accesskey:secretkey@host.docker.internal:9000 # localhost is not valid address here!
+      MINIO_ADDRESS: http://accesskey:secretkey@host.docker.internal:9000 # "localhost" or "minio" is not valid address here!
     ports:
       - 8000:80
 
@@ -15,8 +13,6 @@ services:
     environment:
       MINIO_ACCESS_KEY: accesskey
       MINIO_SECRET_KEY: secretkey
-    volumes:
-      - ./data:/data
     ports:
       - 9000:9000
     command: server /data

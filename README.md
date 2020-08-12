@@ -1,12 +1,36 @@
-# Self-hosted cache server for nx
+# Self-hosted cache server for [nrwl/nx](https://nx.dev/)
 
-## Installation
+## Quickstart
 ### 1. How to run server
-#### 1.1 With Docker
-1. `git clone https://github.com/aaa4xu/nx-self-hosted-cache.git`
-4. `docker-compose up`
+#### 1.1 With docker-compose
+```yaml
+version: '3.5'
 
-#### 1.2 Without Docker
+services:
+  nx-cache:
+    image: aaa4xu/nx-self-hosted-cache
+    environment:
+      MINIO_ADDRESS: http://accesskey:secretkey@host.docker.internal:9000 # "localhost" or "minio" is not valid address here!
+    ports:
+      - 8000:80
+
+  minio:
+    image: minio/minio:RELEASE.2020-08-08T04-50-06Z
+    environment:
+      MINIO_ACCESS_KEY: accesskey
+      MINIO_SECRET_KEY: secretkey
+    ports:
+      - 9000:9000
+    command: server /data
+```
+
+#### 1.2 With Docker
+1. Install and configure [Minio](https://min.io/download)
+2. `docker run -p 8000:80 \
+      -e "MINIO_ADDRESS=http://accesskey:secretkey@minio.domain.com:9000" \
+      aaa4xu/nx-self-hosted-cache`
+
+#### 1.3 Without Docker
 1. Install and configure [Minio](https://min.io/download)
 2. `git clone https://github.com/aaa4xu/nx-self-hosted-cache.git`
 3. `npm install`
@@ -35,5 +59,5 @@
         }
       }
     }
-    ```  
+    ```
 3. `nx affected:build`
