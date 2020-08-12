@@ -31,6 +31,7 @@ async function main() {
   const app = express();
   app.use(express.json());
   app.use(apiMetrics());
+  app.use(express.static('public'));
 
   app.post('/nx-cloud/runs/start', async (req, res, next) => {
     try {
