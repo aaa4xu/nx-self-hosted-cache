@@ -1,0 +1,11 @@
+.idea
+.git
+data
+.dockerignore
+.gitignore
+.prettierrc
+default.env
+.env
+docker-compose.yaml
+Dockerfile
+node_modules
