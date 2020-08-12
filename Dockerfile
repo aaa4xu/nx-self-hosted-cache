@@ -10,5 +10,6 @@ COPY yarn.lock yarn.lock
 RUN yarn --frozen-lockfile
 
 COPY src src
+COPY public public
 
 ENTRYPOINT ["yarn", "start"]
