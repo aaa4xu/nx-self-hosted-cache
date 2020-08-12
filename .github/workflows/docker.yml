@@ -1,0 +1,17 @@
+name: Build and Publish Docker Image
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@master
+      - name: Publish to Registry
+        uses: elgohr/Publish-Docker-Github-Action@master
+        with:
+          name: aaa4xu/nx-self-hosted-cache
+          username: aaa4xu
+          password: ${{ secrets.DOCKER_PASSWORD }}

@@ -2,7 +2,7 @@ version: '3.5'
 
 services:
   nx-cache:
-    image: nx-cache
+    image: nx-self-hosted-cache
     restart: unless-stopped
     build: .
     environment:
